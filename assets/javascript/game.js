@@ -15,3 +15,30 @@ document.getElementById('playerPoints').innerHTML = score;
 document.getElementById('wins').innerHTML = wins;
 
 document.getElementById('losses').innerHTML = losses;
+
+var numberGenerator = function() {
+    numberToGuess = randomNumberToGuess
+    document.getElementById('randomNumber').innerHTML = numberToGuess;
+}
+
+console.log(randomNumberToGuess);
+console.log(crystal1);
+console.log(crystal2);
+console.log(crystal3);
+console.log(crystal4);
+
+if (numberToGuess === score) {
+    wins++;
+    alert('You win!')
+}
+
+else if (numberToGuess <= score) {
+    losses++;
+    score = 0;
+    alert('You lose.')
+}
+};
+
+function addPoints1() {
+    
+}
