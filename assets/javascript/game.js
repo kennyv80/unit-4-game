@@ -1,44 +1,80 @@
 var wins = 0;
 var losses = 0;
 var score = 0;
-var NumberToGuess = 0;
+var crystalCount = 0;
 
-var randomNumberToGuess = Math.floor(Math.random() * 80) + 20;
+//write a function to encompass these 2 sections to refresh randomNumber and new values for crystals when you win or lose
+var randomNumber = Math.floor(Math.random()*(120-19+1)+19);
+console.log(randomNumber);
 
-var crystal1 = Math.floor(Math.random() * 12) + 1;
-var crystal2 = Math.floor(Math.random() * 12) + 1;
-var crystal3 = Math.floor(Math.random() * 12) + 1;
-var crystal4 = Math.floor(Math.random() * 12) + 1;
+$("#blue").attr("data-number", Math.floor(Math.random() * 12) + 1);
+$("#yellow").attr("data-number", Math.floor(Math.random() * 12) + 1);
+$("#green").attr("data-number", Math.floor(Math.random() * 12) + 1);
+$("#red").attr("data-number", Math.floor(Math.random() * 12) + 1);
 
-document.getElementById('playerPoints').innerHTML = score;
+$('#playerPoints').text(score);
 
-document.getElementById('wins').innerHTML = wins;
+$('#wins').text(wins);
 
-document.getElementById('losses').innerHTML = losses;
+$('losses').text(losses);
 
 var numberGenerator = function() {
-    numberToGuess = randomNumberToGuess
-    document.getElementById('randomNumber').innerHTML = numberToGuess;
+    crystalCount = randomNumber
+    document.getElementById('randomNumber').innerHTML = crystalCount;
 }
 
-console.log(randomNumberToGuess);
-console.log(crystal1);
-console.log(crystal2);
-console.log(crystal3);
-console.log(crystal4);
 
-if (numberToGuess === score) {
-    wins++;
-    alert('You win!')
+console.log(randomNumber);
+
+function checkNumber(){
+
+    if (crystalCount === randomNumber) {
+        wins++;
+        alert('You win!')
+    }
+
+    else if (crystalCount > randomNumber) {
+        losses++;
+        score = 0;
+        alert('You lose.')
+    }
+}
+$(".gem").click(function() {
+    console.log($(this).data("number"));
+    var clickedCrystal = $(this).data("number");
+
+    crystalCount += clickedCrystal
+    console.log(crystalCount)
+
+    checkNumber()
+    
+function reset (){
+    var score = 0;
+    var crystalCount = 0;
 }
 
-else if (numberToGuess <= score) {
-    losses++;
-    score = 0;
-    alert('You lose.')
+  });
+  
+/*function addPoints1() {
+    score = crystal1 + score;
+    document.getElementById('playerPoints'.innerHTML) = score //change to jquery
+    numberGenerator();
 }
-};
 
 function addPoints1() {
-    
+    score = crystal2 + score;
+    document.getElementById('playerPoints'.innerHTML) = score //change to jquery
+    numberGenerator();
 }
+
+function addPoints1() {
+    score = crystal3 + score;
+    document.getElementById('playerPoints'.innerHTML) = score //change to jquery
+    numberGenerator();
+}
+
+function addPoints1() { //change to jquery
+    score = crystal4 + score;
+    document.getElementById('playerPoints'.innerHTML) = score
+    numberGenerator();
+}*/
